@@ -99,10 +99,10 @@ if not os.path.exists('videos'):
 async def start_command(message: types.Message):
     new_user(message.chat.id)
     await bot.send_message(chat_id=message.chat.id,
-                           text="""Merhaba\n\nSana TikToktan logosuz video indirmen için yardım edicem.\nSadece bana videonun bağlantısını gönder.\n\nMade By: @mmagneto""",
+                           text="""Merhaba\n\nBen bir tiktok video indirme botuyum.\nTiktok videolarını senin için fligransız indireceğim\nSadece bana videonun bağlantısını gönder.\n\nPowered by: @baygoktas""",
                            parse_mode="HTML",
                            disable_web_page_preview=True,
-                           reply_markup=InlineKeyboardMarkup( [ [InlineKeyboardButton('Sahip', url=f"https://t.me/mmagneto"),
+                           reply_markup=InlineKeyboardMarkup( [ [InlineKeyboardButton('Geliştirici', url=f"https://t.me/baygoktas"),
                                                                                        InlineKeyboardButton('Kaynak Kod 😉', url='https://github.com/ali-mmagneto/Thetiktokindirici') ] ]  ) ) 
 @dp.message_handler(commands='send')
 async def command_letter(message):
@@ -153,7 +153,7 @@ async def statistika_command(message: types.Message):
 async def text(message: types.Message):
     new_user(message.chat.id)
     if message.text.startswith('https://www.tiktok.com'):
-        await bot.send_message(chat_id=message.chat.id, text='Bekle İndiriyom...')
+        await bot.send_message(chat_id=message.chat.id, text='Bağlantıdaki videoyu indiriyorum...⬇️')
         video_url = message.text
         try:
             snaptik(video_url).get_media()[0].download(f"./videos/result_{message.from_user.id}.mp4")
@@ -164,8 +164,8 @@ async def text(message: types.Message):
                 await bot.send_video(
                     chat_id=message.chat.id,
                     video=file.read(),
-                    caption='@TikTokVideoDownRobot ile indirildi.',
-                    reply_markup=InlineKeyboardMarkup( [ [InlineKeyboardButton('Bot', url=f"https://t.me/TikTokVideoDownRobot") ] ]  ) 
+                    caption='@Toktiktrbot ile indirildi.',
+                    reply_markup=InlineKeyboardMarkup( [ [InlineKeyboardButton('Bot', url=f"https://t.me/Toktiktrbot") ] ]  ) 
                 )
             os.remove(path)
         except Exception as e:
@@ -173,7 +173,7 @@ async def text(message: types.Message):
             await bot.send_message(chat_id=message.chat.id,
                                    text='İndirme hatası, yanlış bağlantı, video silinmiş veya bulamadım.')
     elif message.text.startswith('https://vm.tiktok.com') or message.text.startswith('http://vm.tiktok.com'):
-        await bot.send_message(chat_id=message.chat.id, text='Bekle İndiriyom...')
+        await bot.send_message(chat_id=message.chat.id, text='Bağlantıdaki videoyu indiriyorum...⬇️')
         video_url = message.text
         try:
             add_new_download()
@@ -183,8 +183,8 @@ async def text(message: types.Message):
                 await bot.send_video(
                     chat_id=message.chat.id,
                     video=file.read(),
-                    caption='@TikTokVideoDownRobot ile indirildi.', 
-                    reply_markup=InlineKeyboardMarkup( [ [InlineKeyboardButton('Bot', url=f"https://t.me/TikTokVideoDownRobot") ] ]  ) 
+                    caption='@Toktiktrbot ile indirildi.', 
+                    reply_markup=InlineKeyboardMarkup( [ [InlineKeyboardButton('Bot', url=f"https://t.me/Toktiktrbot") ] ]  ) 
                 )
             await bot.delete_message(message.chat.id, message.message_id + 1)
             os.remove(path)
